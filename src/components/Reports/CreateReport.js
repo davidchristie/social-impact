@@ -25,8 +25,7 @@ class CreateReport extends Component {
       isOpen: false,
       values: {
         description: '',
-        name: '',
-        private: false
+        name: ''
       }
     }
   }
@@ -62,12 +61,6 @@ class CreateReport extends Component {
               <FormGroup>
                 <Label for='createReportDescription'>Description</Label>
                 <Input id='createReportDescription' name='description' onChange={this.handleChange} type='textarea' value={this.state.values.description} />
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input checked={this.state.values.private} name='private' onChange={this.handleChange} type='checkbox' />
-                  Keep report private
-                </Label>
               </FormGroup>
             </ModalBody>
             <ModalFooter>
@@ -112,7 +105,6 @@ const getUserQuery = gql`
             description
             id
             name
-            private
           }
         }
       }

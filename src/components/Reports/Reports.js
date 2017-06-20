@@ -41,7 +41,6 @@ const allReportsQuery = gql`
             description
             id
             name
-            private
           }
         }
       }

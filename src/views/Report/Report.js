@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { Link } from 'react-router-dom'
-import { Badge, Button, Card, CardText } from 'reactstrap'
+import { Button, Card, CardText } from 'reactstrap'
 
 import Error from '../../components/Error'
 import Loading from '../../components/Loading'
@@ -31,7 +31,6 @@ class Report extends Component {
         <Card block>
           <CardText>{this.props.data.getReport.description}</CardText>
         </Card>
-        {this.props.data.getReport.private ? <Badge>Private</Badge> : null}
         <p>
           Created by {this.props.data.getReport.createdBy.name} <RelativeDate value={this.props.data.getReport.createdAt} />
         </p>
@@ -52,7 +51,6 @@ const getReportAndLoggedInUserQuery = gql`
       description
       id
       name
-      private
     }
     viewer {
       user {

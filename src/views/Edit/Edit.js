@@ -17,8 +17,7 @@ class Edit extends Component {
     this.state = {
       values: {
         description: '',
-        name: '',
-        private: false
+        name: ''
       }
     }
   }
@@ -28,8 +27,7 @@ class Edit extends Component {
       this.setState({
         values: {
           description: nextProps.data.getReport.description,
-          name: nextProps.data.getReport.name,
-          private: nextProps.data.getReport.private
+          name: nextProps.data.getReport.name
         }
       })
     }
@@ -83,22 +81,6 @@ class Edit extends Component {
               />
             </Col>
           </FormGroup>
-          <FormGroup row>
-            <Col sm={{ offset: 2, size: 10 }}>
-              <FormGroup check>
-                <Label check>
-                  <Input
-                    checked={this.state.values.private}
-                    id='editReportPrivate'
-                    name='private'
-                    onChange={this.handleChange}
-                    type='checkbox'
-                  />
-                    Keep report private
-                </Label>
-              </FormGroup>
-            </Col>
-          </FormGroup>
           <FormGroup check row>
             <Col sm={{ size: 10, offset: 2 }}>
               <Button>Update</Button>
@@ -123,7 +105,6 @@ const getReportQuery = gql`
       description
       id
       name
-      private
     }
   }
 `
@@ -135,7 +116,6 @@ const updateReportMutation = gql`
         description
         id
         name
-        private
       }
     }
   }
