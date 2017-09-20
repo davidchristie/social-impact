@@ -13,7 +13,6 @@ import {
 import Login from '../../components/Login'
 
 export default class Header extends Component {
-
   constructor (props) {
     super(props)
     this.toggle = this.toggle.bind(this)
@@ -45,5 +44,4 @@ export default class Header extends Component {
       </div>
     )
   }
-
 }

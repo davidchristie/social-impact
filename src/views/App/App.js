@@ -13,7 +13,6 @@ import Footer from './Footer'
 import Header from './Header'
 
 export default class App extends Component {
-
   componentWillMount () {
     if (!isAuthenticated()) {
       history.push('/')
@@ -38,5 +37,4 @@ export default class App extends Component {
       </div>
     )
   }
-
 }

@@ -7,7 +7,6 @@ import CreateReport from './CreateReport'
 import ReportList from './ReportList'
 
 class Reports extends Component {
-
   render () {
     if (this.props.data.loading) {
       return <h2>Loading</h2>
@@ -24,7 +23,6 @@ class Reports extends Component {
       )
     }
   }
-
 }
 
 Reports.propTypes = {

@@ -13,7 +13,6 @@ import {
 import Logout from '../Logout'
 
 class Profile extends Component {
-
   constructor (props) {
     super(props)
     this.toggle = this.toggle.bind(this)
@@ -46,7 +45,6 @@ class Profile extends Component {
       isOpen: !this.state.isOpen
     })
   }
-
 }
 
 const loggedInUserQuery = gql`

@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import relativeDate from 'relative-date'
 
 class RelativeDate extends Component {
-
   render () {
     return (
       <span>
@@ -11,7 +10,6 @@ class RelativeDate extends Component {
       </span>
     )
   }
-
 }
 
 RelativeDate.propTypes = {

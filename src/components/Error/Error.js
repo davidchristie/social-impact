@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { Card, CardText, CardTitle } from 'reactstrap'
 
 class Error extends Component {
-
   render () {
     return (
       <Card block color='danger' inverse>
@@ -12,7 +11,6 @@ class Error extends Component {
       </Card>
     )
   }
-
 }
 
 Error.propTypes = {

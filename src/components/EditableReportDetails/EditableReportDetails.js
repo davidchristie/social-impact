@@ -2,33 +2,29 @@ import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { compose, graphql } from 'react-apollo'
-import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import { Card, CardBlock, CardText, CardTitle } from 'reactstrap'
 
-import EditableImpactList from '../../components/EditableImpactList'
-import EditableReportDetails from '../../components/EditableReportDetails'
 import Error from '../../components/Error'
 import Loading from '../../components/Loading'
+import EditReportDetails from './EditReportDetails'
 
-class Edit extends Component {
+class EditableReportDetails extends Component {
   static propTypes = {
-    match: PropTypes.shape({
-      url: PropTypes.string.isRequired
-    }).isRequired
+    reportId: PropTypes.string.isRequired
   }
 
   render () {
     if (this.props.data.loading) return <Loading />
     if (this.props.data.error) return <Error error={this.props.data.error} />
-    const reportId = this.props.data.getReport.id
     return (
       <div>
-        <h1>Edit {this.props.data.getReport.name}</h1>
-        <EditableReportDetails reportId={reportId} />
-        <h3>Impacts</h3>
-        <EditableImpactList reportId={reportId} />
-        <hr />
-        <Button tag={Link} to={`/app/reports/${reportId}`}>Done</Button>
+        <Card>
+          <CardBlock>
+            <CardTitle>{this.props.data.getReport.name}</CardTitle>
+            <CardText>{this.props.data.getReport.description}</CardText>
+          </CardBlock>
+        </Card>
+        <EditReportDetails reportId={this.props.reportId} />
       </div>
     )
   }
@@ -62,7 +58,7 @@ const withData = compose(
     {
       options: props => ({
         variables: {
-          id: props.match.params.id
+          id: props.reportId
         }
       })
     }
@@ -84,4 +80,4 @@ const withData = compose(
   )
 )
 
-export default withData(Edit)
+export default withData(EditableReportDetails)

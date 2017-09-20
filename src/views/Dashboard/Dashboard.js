@@ -7,7 +7,6 @@ import Loading from '../../components/Loading'
 import Reports from '../../components/Reports'
 
 class Dashboard extends Component {
-
   render () {
     if (this.props.data.loading) return <Loading />
     if (this.props.data.error) return <Error error={this.props.data.error} />
@@ -19,7 +18,6 @@ class Dashboard extends Component {
       </div>
     )
   }
-
 }
 
 const loggedInUserQuery = gql`

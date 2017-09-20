@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import ReportListItem from './ReportListItem'
 
 class ReportList extends Component {
-
   render () {
     return (
       <div>
@@ -16,7 +15,6 @@ class ReportList extends Component {
       </div>
     )
   }
-
 }
 
 ReportList.propTypes = {

@@ -15,7 +15,6 @@ const options = {
 }
 
 class Login extends Component {
-
   constructor (props) {
     super(props)
     const lock = new Auth0Lock(clientId, domain, options)
@@ -56,7 +55,6 @@ class Login extends Component {
       </span>
     )
   }
-
 }
 
 const loginUserWithAuth0Mutation = gql`

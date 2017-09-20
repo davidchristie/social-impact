@@ -14,7 +14,11 @@ import {
   ModalHeader
 } from 'reactstrap'
 
-class CreateReport extends Component {
+class AddImpact extends Component {
+  static propTypes = {
+    reportId: PropTypes.string.isRequired
+  }
+
   constructor (props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
@@ -48,22 +52,22 @@ class CreateReport extends Component {
   render () {
     return (
       <div>
-        <Button onClick={this.toggle}>Create Report</Button>
+        <Button onClick={this.toggle}>Add Impact</Button>
         <Modal isOpen={this.state.open} toggle={this.toggle}>
           <Form onSubmit={this.handleSubmit}>
-            <ModalHeader toggle={this.toggle}>Create Report</ModalHeader>
+            <ModalHeader toggle={this.toggle}>Add Impact</ModalHeader>
             <ModalBody>
               <FormGroup>
-                <Label for='createReportName'>Name</Label>
-                <Input id='createReportName' name='name' onChange={this.handleChange} required type='text' value={this.state.values.name} />
+                <Label for='createImpactName'>Name</Label>
+                <Input id='createImpactName' name='name' onChange={this.handleChange} required type='text' value={this.state.values.name} />
               </FormGroup>
               <FormGroup>
-                <Label for='createReportDescription'>Description</Label>
-                <Input id='createReportDescription' name='description' onChange={this.handleChange} type='textarea' value={this.state.values.description} />
+                <Label for='createImpactDescription'>Description</Label>
+                <Input id='createImpactDescription' name='description' onChange={this.handleChange} type='textarea' value={this.state.values.description} />
               </FormGroup>
             </ModalBody>
             <ModalFooter>
-              <Button type='submit'>Create</Button>
+              <Button type='submit'>Add</Button>
               <Button onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
           </Form>
@@ -74,30 +78,20 @@ class CreateReport extends Component {
 
   toggle () {
     this.setState({
-      open: !this.state.open
+      open: !this.state.open,
+      values: {
+        description: '',
+        name: ''
+      }
     })
   }
 }
 
-CreateReport.propTypes = {
-  userId: PropTypes.string.isRequired
-}
-
-const createReportMutation = gql`
-  mutation CreateReport($input: CreateReportInput!) {
-    createReport(input: $input) {
-      changedReport {
-        id
-      }
-    }
-  }
-`
-
-const getUserQuery = gql`
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
+const QUERY = gql`
+  query AddImpact($id: ID!) {
+    getReport(id: $id) {
       id
-      reports {
+      impacts {
         edges {
           node {
             description
@@ -110,21 +104,33 @@ const getUserQuery = gql`
   }
 `
 
+const CREATE_IMPACT_MUTATION = gql`
+  mutation CreateImpact($input: CreateImpactInput!) {
+    createImpact(input: $input) {
+      changedImpact {
+        description
+        id
+        name
+      }
+    }
+  }
+`
+
 const withData = graphql(
-  createReportMutation,
+  CREATE_IMPACT_MUTATION,
   {
     props: ({ mutate, ownProps }) => ({
       createReport: values => mutate({
         refetchQueries: [{
-          query: getUserQuery,
+          query: QUERY,
           variables: {
-            id: ownProps.userId
+            id: ownProps.reportId
           }
         }],
         variables: {
           input: {
             ...values,
-            createdById: ownProps.userId
+            reportId: ownProps.reportId
           }
         }
       })
@@ -132,4 +138,4 @@ const withData = graphql(
   }
 )
 
-export default withData(CreateReport)
+export default withData(AddImpact)

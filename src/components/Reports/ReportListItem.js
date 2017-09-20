@@ -10,7 +10,6 @@ import {
 } from 'reactstrap'
 
 class ReportListItem extends Component {
-
   render () {
     return (
       <Card>
@@ -26,7 +25,6 @@ class ReportListItem extends Component {
       </Card>
     )
   }
-
 }
 
 ReportListItem.propTypes = {

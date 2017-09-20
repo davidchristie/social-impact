@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { logout } from '../../authentication'
 
 export default class Logout extends Component {
-
   constructor (props) {
     super(props)
     this.handleClick = this.handleClick.bind(this)
@@ -20,5 +19,4 @@ export default class Logout extends Component {
       </span>
     )
   }
-
 }
